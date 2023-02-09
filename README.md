@@ -11,8 +11,8 @@
  > Informe técnico
  > 
  > [Descargar aplicativo en formato APK](https://epnecuador-my.sharepoint.com/:u:/g/personal/jean_fuentes_epn_edu_ec/EUE2DuSTkKBLsKztB1Uso0UB0VsGtdBkNefbpZ4j0gUjzw?e=jWNXrK).
-
-
+## Ejecución del Aplicativo en entorno local:
+###### 1. The smallest heading
 This is the complete audio player app built with Expo React Native. This is the project created for YouTube tutorial by [non-degree-programmer](https://www.youtube.com/channel/UCiTUxayvzwCn9qStZYK07zg).
 
 This app is made for reading local audio files from your device and play them inside it.
