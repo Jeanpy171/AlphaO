@@ -10,7 +10,7 @@
 ## Acceso al Aplicativo en producción:
  > Informe técnico
  > 
- > [Descargar aplicativo en formato APK]([https://pages.github.com/](https://epnecuador-my.sharepoint.com/:u:/g/personal/jean_fuentes_epn_edu_ec/EUE2DuSTkKBLsKztB1Uso0UB0VsGtdBkNefbpZ4j0gUjzw?e=jWNXrK)).
+ > [Descargar aplicativo en formato APK]([https://pages.github.com/(https://epnecuadormy.sharepoint.com/:u:/g/personal/jean_fuentes_epn_edu_ec/EUE2DuSTkKBLsKztB1Uso0UB0VsGtdBkNefbpZ4j0gUjzw?e=jWNXrK)).
 
 
 This is the complete audio player app built with Expo React Native. This is the project created for YouTube tutorial by [non-degree-programmer](https://www.youtube.com/channel/UCiTUxayvzwCn9qStZYK07zg).
