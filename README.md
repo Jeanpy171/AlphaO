@@ -20,9 +20,6 @@ https://reactnative.dev/docs/environment-setup
 2. Instalar y configurar el entorno de desarrollo con la herramienta Expo.
 
 
-
-![Audio Player](./images/player-image.jpg)
+## AlphaO
 ![image](https://user-images.githubusercontent.com/74626067/218285846-e07cacbc-015a-425c-a000-06871618c254.png)
 
-
-clone or download this project and do npm install, you can use expo app on android or ios to run this project.
