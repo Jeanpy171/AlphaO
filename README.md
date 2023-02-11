@@ -14,9 +14,9 @@
 ## Ejecución del Aplicativo en entorno local:
 ###### Configuración del ambiente de desarrollo
 1. Descarga e instalación de las dependencias y configuración del entorno de desarrollo para ejecución de proyectos con React Native.
-https://reactnative.dev/docs/environment-setup
+[https://reactnative.dev/docs/environment-setup]
 
-https://reactnative.dev/docs/environment-setup
+
 
 ![Audio Player](./images/player-image.jpg)
 
