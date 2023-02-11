@@ -21,3 +21,9 @@
 ![Audio Player](./images/player-image.jpg)
 
 clone or download this project and do npm install, you can use expo app on android or ios to run this project.
+
+```
+		
+		//bloque de codigo...
+		
+		```
