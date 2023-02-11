@@ -18,6 +18,13 @@
 https://reactnative.dev/docs/environment-setup
 ```
 2. Instalar y configurar el entorno de desarrollo con la herramienta Expo.
+```
+https://docs.expo.dev/get-started/installation/
+```
+3. Clonar el proyecto.
+```
+git clone
+```
 
 
 ## AlphaO
