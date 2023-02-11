@@ -23,9 +23,17 @@ https://docs.expo.dev/get-started/installation/
 ```
 3. Clonar el proyecto.
 ```
-git clone
+git clone https://github.com/Jeanpy171/AlphaO.git
 ```
-
+4. En el directorio raíz instalar las dependencias necesarias con el siguiente comando.
+```
+yarn add
+```
+5. Habilitar el modo desarrollador en el teléfono a usar y enchufarlo al computador.
+6. Ejecutar el siguiente comando para iniciar la aplicación en el teléfono.
+```
+expo run:andoid
+```
 
 ## AlphaO
 ![image](https://user-images.githubusercontent.com/74626067/218285846-e07cacbc-015a-425c-a000-06871618c254.png)
