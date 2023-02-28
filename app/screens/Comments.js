@@ -7,6 +7,8 @@ import { Alert } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../components/Loader';
+import { urlApiAlphaO } from '../const/CONST';
+import { StatusBar } from 'react-native';
 
 
 const WATER_IMAGE = "https://www.pngplay.com/wp-content/uploads/6/5-Star-Rating-Vector-Transparent-PNG.png"
@@ -25,7 +27,7 @@ const Comments = ({navigation}) => {
         try {
             console.log("Registrando comentario . . . ")
             const response = await axios.post(
-                'https://alphaofinal.herokuapp.com/api/alpha/comments/comment-create',
+                `${urlApiAlphaO}/api/alpha/comments/comment-create`,
                 { comentario, calificacion },
                 { headers: { 'accept': 'application/json','authorization': await token } }
             )
@@ -56,13 +58,14 @@ const Comments = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <Loader visible={isLoading} text="Almacenando comentario" />
       <View>
         <Text style={styles.title}>
                 ¿Qué te ha parecido la experiencia?
             </Text>
             <Text style={styles.subtitle}>
-            Dejanos un comentario para rectificar en aquello que crea erroneo y asi seguir mejorando nuestro servicio
+            Déjanos un comentario para rectificar en aquello que crea erroneo y asi seguir mejorando nuestro servicio
             </Text>
             <Rating
                 type='heart'
@@ -77,8 +80,8 @@ const Comments = ({navigation}) => {
             style={{marginVertical:"10%"}}
             multiline={true}
             numberOfLines={4}
-            maxLength={50}
-            label={"Valoracion personal"}
+            maxLength={150}
+            label={"Redacta tu opinón aquí"}
             placeholder={"Redacta tu opinón aquí"}
             onChangeText={(text) => setComment(text)}
             value={comment}/>

@@ -37,7 +37,7 @@ export default function Register() {
     }
     if (errorEmail != '') {
       console.log('DATOS DE EMAIL')
-      setErrorEmail('El campo correo electronico no puede estar vacio')
+      setErrorEmail('El campo correo electrónico no puede estar vacio')
       isValid = false;
     }
     console.log("PASS ", errorPassword)
@@ -60,10 +60,10 @@ export default function Register() {
   } else {
     return (
       <ScrollView style={styles.mainContainer}>
-        <StatusBar hidden={false} />
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <ImageBackground
           source={require("../../assets/garza-fondo.jpg")}
-          imageStyle={{ opacity: 0.3 }}
+          imageStyle={{ opacity: 0.2 }}
           style={styles.background}
         >
           <View style={styles.contentContainer}>

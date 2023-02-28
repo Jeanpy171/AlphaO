@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
-import { sizes } from '../const/CONST'
+import { sizes, urlApiAlphaO } from '../const/CONST'
 import LoaderAnimation from './LoaderAnimation'
 
 
@@ -43,7 +43,7 @@ const Carousel = ({data}) => {
       try {
           console.log("Recopilando fotos de banner")
           const response = await axios.get(
-              'https://alphaofinal.herokuapp.com/api/alpha/banner/total',
+            `${urlApiAlphaO}/api/alpha/banner/total`,
               { headers: { 'accept': 'application/json', 'authorization': await token } }
           );
           console.log(response.data.data.banners);

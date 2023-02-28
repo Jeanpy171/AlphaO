@@ -5,8 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
-import { Icon } from '@rneui/base';
-import { colors, sizes } from '../const/CONST';
+import { Icon, SearchBar } from '@rneui/base';
+import { colors, sizes, urlApiAlphaO } from '../const/CONST';
 import LoaderAnimation from '../components/LoaderAnimation';
 import { AuthContext } from '../context/AuthContext';
 
@@ -18,9 +18,12 @@ const MiReserves = ({ navigation }) => {
     const [showAnimation, setShowAnimation] = useState(false);
     const [info, setInfo] = useState("")
     const { notifications, setNotifications } = useContext(AuthContext)
+
     const wait = (timeout) => {
         return new Promise(resolve => setTimeout(resolve, timeout));
     }
+
+
     const getEventsList = async () => {
         
         console.log(await token)
@@ -28,7 +31,7 @@ const MiReserves = ({ navigation }) => {
         try {
             console.log("Recopilando mis eventos")
             const response = await axios.get(
-                'https://alphaofinal.herokuapp.com/api/alpha/reservas/misreservs',
+                `${urlApiAlphaO}/api/alpha/reservas/misreservs`,
                 { headers: { 'accept': 'application/json', 'authorization': await token } }
             );
             console.log(response.data);
@@ -55,9 +58,9 @@ const MiReserves = ({ navigation }) => {
         setShowAnimation(true)
         try {
             console.log(`Eliminando la reserva: ${number}`)
-            console.log(`https://alphaofinal.herokuapp.com/api/alpha/reservas/${number}/destroy`)
+            console.log(`${urlApiAlphaO}/api/alpha/reservas/${number}/destroy`)
             const response = await axios.get(
-                `https://alphaofinal.herokuapp.com/api/alpha/reservas/${number}/destroy`,
+                `${urlApiAlphaO}/api/alpha/reservas/${number}/destroy`,
                 { headers: { 'accept': 'application/json', 'authorization': await token } }
             );
             console.log(response.data.message);
@@ -78,7 +81,7 @@ const MiReserves = ({ navigation }) => {
     useEffect(() => {
         getEventsList()
         console.log("RESERVAS CARGADAS: ", reservas)
-    }, [refresh])
+    }, [refresh,notifications])
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
@@ -123,7 +126,7 @@ const MiReserves = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar hidden={false} />
+            <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
             <MainHeader screen={"Mis Reservas"} name={'ios-menu-outline'} onPress={() => navigation.openDrawer()} />
             <LoaderAnimation visible={showAnimation} />
             <ScrollView

@@ -52,3 +52,5 @@ export const spacing = {
   l: 24,
   xl: 40,
 };
+
+export const urlApiAlphaO = 'https://alphaofin.herokuapp.com';

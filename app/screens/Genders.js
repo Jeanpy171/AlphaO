@@ -12,7 +12,7 @@ export const Genders = ({navigation}) => {
  
   return (
     <View style={styles.container}>
-      <StatusBar hidden={false} />
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <MainHeader screen={"Emociones"} name={'ios-menu-outline'} onPress={() => navigation.openDrawer()}/>
       <GenderCard/>
       <ScrollView>

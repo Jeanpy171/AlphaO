@@ -7,8 +7,9 @@ import { validateEmail } from '../utils/helpers';
 import axios from 'axios';
 import { Poppins_400Regular, Poppins_500Medium } from '@expo-google-fonts/poppins';
 import { useFonts } from '@expo-google-fonts/dev';
-import { colors, sizes } from '../const/CONST';
+import { colors, sizes, urlApiAlphaO } from '../const/CONST';
 import { useState } from 'react';
+import { StatusBar } from 'react-native';
 
 export default function RecoverPassword({ navigation }) {
   const [email, setEmail] = useState();
@@ -25,7 +26,7 @@ export default function RecoverPassword({ navigation }) {
     let isValid = true;
     if (errorEmail != '') {
       console.log('DATOS DE EMAIL')
-      setErrorEmail('El campo correo electronico no puede estar vacio')
+      setErrorEmail('El campo correo electrónico no puede estar vacio')
       isValid = false;
     }
     if (isValid) {
@@ -38,17 +39,17 @@ export default function RecoverPassword({ navigation }) {
     try {
       console.log("Realizando peticion")
       const response = await axios.post(
-        'https://alphaofinal.herokuapp.com/api/alpha/forgot-password',
+        `${urlApiAlphaO}/api/alpha/forgot-password`,
         { email },
         { headers: { 'accept': 'application/json' } }
       )
       console.log(response.data.message);
-      Alert.alert('Cuenta encontrada!', response.data.message);
+      Alert.alert('Cuenta encontrada!', "Te hemos enviado un mensaje a tu correo electrónico con un link para reestablecer tu contraseña.");
       navigation.goBack()
     } catch (e) {
       console.log(e.response.data.errors.email)
       setIsLoading(false)
-      Alert.alert('Error de verificación', e.response.data.errors.email);
+      Alert.alert('Error de verificación', "No pudimos encontrar al usuario con el correo que digitaste.");
     }
   }
 
@@ -58,10 +59,11 @@ export default function RecoverPassword({ navigation }) {
   } else {
     return (
       <KeyboardAvoidingView style={styles.mainContainer}>
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <Loader visible={isLoading} text="Validando email" />
         <ImageBackground
           source={require("../../assets/garza-fondo.jpg")}
-          imageStyle={{ opacity: 0.3 }}
+          imageStyle={{ opacity: 0.2 }}
           style={styles.background}
         >
           <View style={styles.contentContainer}>
@@ -83,7 +85,7 @@ export default function RecoverPassword({ navigation }) {
               //onFocus={() => handleError(null, 'email')}
               iconName="email-outline"
               label="Correo Electrónico"
-              placeholder="Ingresa tu correo electronico"
+              placeholder="Ingresa tu correo electrónico"
               maxLength={30}
               error={errorEmail}
               keyboard='email-address'

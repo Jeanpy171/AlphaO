@@ -14,7 +14,8 @@ import DatePick from '../components/DatePick';
 import MainHeader from '../components/MainHeader';
 import Loader from '../components/Loader';
 import CustomModal from '../components/Modal';
-import { sizes } from '../const/CONST';
+import { sizes, urlApiAlphaO } from '../const/CONST';
+import { StatusBar } from 'react-native';
 
 const EditProfile = ({navigation,route}) => {
   const {user, logged, logout, isLogged,userInfo,avatar,profileInformation} = useContext(AuthContext)
@@ -74,7 +75,7 @@ const EditProfile = ({navigation,route}) => {
       try {
           console.log("Entrando a actualizar perfil")
           const response = await axios.post(
-            'https://alphaofinal.herokuapp.com/api/alpha/profile/avatar',
+            `${urlApiAlphaO}/api/alpha/profile/avatar`,
             formData,
             { headers: { 'Content-Type': 'multipart/form-data', 'authorization': await token } }
         );
@@ -156,7 +157,7 @@ const EditProfile = ({navigation,route}) => {
       setIsLoading(true)
       try {
         const response = await axios.post(
-            'https://alphaofinal.herokuapp.com/api/alpha/profile',
+          `${urlApiAlphaO}/api/alpha/profile`,
             { first_name,last_name,username,birthdate,personal_phone,home_phone,address, },
             { headers: { 'accept': 'application/json', 'authorization': await token } }
         );
@@ -199,8 +200,8 @@ const EditProfile = ({navigation,route}) => {
       return null;
     } else {
       return (
-        
         <View style={styles.container}>
+          <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
          <Loader visible={isLoading} text={text} />
           <MainHeader screen={"Actualizar Perfil"} name={'ios-arrow-back'} onPress={() => navigation.goBack()}/>
           <CustomModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} ButtonName={"Cancelar"} onPress={() => navigation.goBack()} title={"Se han encontrado errores en los campos modificados"} text={inputError}/>

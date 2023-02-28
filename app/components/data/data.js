@@ -1,3 +1,4 @@
+import { urlApiAlphaO } from "../../const/CONST";
 
 export const musiclibrary = [
     {
@@ -183,7 +184,7 @@ export const musiclibrary = [
       image:
         "https://i.ytimg.com/vi/yT01CAWDtGM/maxresdefault.jpg",
       //estres
-      playList:"https://alphaofinal.herokuapp.com/api/alpha/soledad/1"
+      playList:`${urlApiAlphaO}/api/alpha/soledad/1`
     },
     {
       id:2,
@@ -191,7 +192,7 @@ export const musiclibrary = [
       resume: "Se puede describir como el hecho de sentirse triste, melancólico, infeliz, abatido o derrumbado. Es común sentirse solo de vez en cuando durante períodos cortos",
       image:
         "https://www.gob.mx/cms/uploads/article/main_image/110230/depresion.jpg",
-      playList:"https://alphaofinal.herokuapp.com/api/alpha/depresion/1"
+      playList:`${urlApiAlphaO}/api/alpha/depresion/1`
       },
     {
       id:3,
@@ -199,7 +200,7 @@ export const musiclibrary = [
       resume: "es una emoción natural que se caracteriza por experimentar una sensación desagradable e intensa ante la percepción de un peligro real o imaginario.",
       image:
         "https://static.vecteezy.com/system/resources/previews/007/938/809/non_2x/concept-illustration-of-man-with-schizophrenia-post-traumatic-stress-mental-disorder-shocked-scared-panic-anxiety-frustrated-fear-and-terrified-flat-cartoon-style-free-vector.jpg",
-      playList:"https://alphaofinal.herokuapp.com/api/alpha/miedo/1"
+      playList:`${urlApiAlphaO}/api/alpha/miedo/1`
     },
     {
       id:4,
@@ -207,7 +208,7 @@ export const musiclibrary = [
       resume: "Es un estado emocional caracterizado por sentimientos de enfado de intensidad variable y puede ser causado por sucesos externos o internos.",
       image:
         "https://img.freepik.com/vector-premium/coleccion-ilustraciones-vectoriales-femeninas-que-expresan-ira-rostros-enojados-molestos_10045-561.jpg",
-      playList:"https://alphaofinal.herokuapp.com/api/alpha/ira/10"
+      playList:`${urlApiAlphaO}/api/alpha/ira/10`
       
     },
     {
@@ -216,7 +217,7 @@ export const musiclibrary = [
       resume:"Es un sentimiento de miedo, temor e inquietud. Puede hacer que sude, se sienta inquieto y tenso, y tener palpitaciones",
       image:
         "https://educacion30.b-cdn.net/wp-content/uploads/2022/10/Ansiedad-jovenes.jpg",
-      playList:"https://alphaofinal.herokuapp.com/api/alpha/ansiedad/1"
+      playList:`${urlApiAlphaO}/api/alpha/ansiedad/1`
       
     },
   ]

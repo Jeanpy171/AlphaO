@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigation } from "@react-navigation/native";
 import { types } from './types';
 import { authReducer } from "./AuthReducer";
+import { urlApiAlphaO } from "../const/CONST";
 
 
 export const AuthContext = createContext();
@@ -29,22 +30,24 @@ export const AuthProvider = ({children}) => {
 
     const [authState, dispatch] = useReducer(authReducer,{}, initialization)
 
+
     const getEventsList = async (token) => {
         try {
             console.log("Recopilando mis eventos")
             const response = await axios.get(
-                'https://alphaofinal.herokuapp.com/api/alpha/reservas/misreservs',
+                `${urlApiAlphaO}/api/alpha/reservas/misreservs`,
                 { headers: { 'accept': 'application/json', 'authorization': await token } }
             );
-            console.log(response.data);
+            console.log("EVENTOS QUE TIENE EL USUARIO - - - - - - - - -",response.data);
             if (response.data.hasOwnProperty('data')) {
-                const res = [];
-                res.push(response.data.data.reservas)
-                console.log("GUARDO NOTIFICACIONES: ",(res.length).toString())
-                AsyncStorage.setItem('notifications', (res.length).toString());
-                setNotifications(res.length + 2)
+                console.log("NOTIFICACIONES RESCATADAS - - - - - - - - -",response.data.data.reservas.length);
+                console.log("GUARDO NOTIFICACIONES: ",(response.data.data.reservas.length).toString())
+                AsyncStorage.setItem('notifications', (response.data.data.reservas.length).toString());
+                setNotifications(response.data.data.reservas.length)
             } else {
                 setNotifications(0)
+                let zero = 0;
+                AsyncStorage.setItem('notifications', zero.toString());
                 console.log(reservas.length)
             }
         } catch (e) {
@@ -54,13 +57,13 @@ export const AuthProvider = ({children}) => {
 
     const login = async (user, token) => 
     {
-        setIsLogged(true)
         const action = { type: types.login, payload: user }
         AsyncStorage.setItem('user', JSON.stringify(user));
         AsyncStorage.setItem('token', token);
         profileInformation(token)
         getEventsList(token)
         dispatch(action);
+        setIsLogged(true)
     }
 
 
@@ -74,12 +77,10 @@ export const AuthProvider = ({children}) => {
             let notify = await AsyncStorage.getItem('notifications')
             console.log("ESTO LLEGA DE NOTIFICACIONES: ",notify )
             setNotifications(parseInt(notify))
-            //const token = await AsyncStorage.getItem('token');
             userInfo = JSON.parse(userInfo)
             if( userInfo ){
-                //setToken(token)
-                setTimeout(() => setIsLogged(true),2000)
-              // setIsLogged(true)
+                setTimeout(() => setIsLogged(false)
+                ,2300)
                 setUserInfo(userInfo)
                 setAvatar({...avatar,...{url:avatarData.substring(1,avatarData.length-1)}})
                 console.log("DATO CONSEGUIDO DE ASYNC ---------------")
@@ -88,14 +89,14 @@ export const AuthProvider = ({children}) => {
                 console.log("\nDATOS DE AVATAR:\n")
                 console.log(avatarData)
             }else{
-                setTimeout(() => setIsLogged(false),2000)
+                setTimeout(() => setIsLogged(false),2300)
                 
             }
           
         
         }catch(e){
             console.log(`IS LOGGED ERROR ${e}`)
-            setTimeout(() => setIsLogged(false),2000)
+            setTimeout(() => setIsLogged(false),2300)
         }
     }
 
@@ -107,10 +108,9 @@ export const AuthProvider = ({children}) => {
     const profileInformation = async (token) => {
         try {
             const response = await axios.get(
-                'https://alphaofinal.herokuapp.com/api/alpha/profile',
+                `${urlApiAlphaO}/api/alpha/profile`,
                 { headers: { 'accept': 'application/json', 'authorization': await token } }
             );
-            //setIsLogged(true)
             console.log("-----------------------------ENTRADA AL PERFIL ----------------\n")
             setUserInfo(response.data.data.user)
             setAvatar({...avatar,url:response.data.data.avatar})
@@ -118,10 +118,8 @@ export const AuthProvider = ({children}) => {
             AsyncStorage.setItem('avatar',JSON.stringify(response.data.data.avatar));
             console.log("AVATAR: ",avatar)
             console.log("DATOS DE USUARIO: ",userInfo)
-            //setIsLogged(true)
             console.log("\nESTA LOGGEADO?-------------------------",isLogged)
         } catch (error) {
-            //setIsLogged(false)
             console.log(error);
         }
     };

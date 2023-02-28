@@ -18,6 +18,7 @@ import GenderStack from './GenderStack';
 import MiReserves from '../screens/MiReserves';
 import Events from '../screens/Events';
 import News from '../screens/News';
+import ReserveStack from './ReservStack';
 
 
 const Drawer = createDrawerNavigator();
@@ -41,7 +42,7 @@ export const CitizenDrawer = () => {
           name='homeScreen'
           component={HomeStack}
           options={{ 
-            title: "Pagina principal",
+            title: "Página principal",
             drawerIcon: ({color})=> (
                 <Icon
                     name='home'
@@ -81,7 +82,7 @@ export const CitizenDrawer = () => {
             }} />
             <Drawer.Screen 
           name='MyReserves'
-          component={MiReserves}
+          component={ReserveStack}
           options={{ 
             title: "Mis reservas",
             drawerIcon: ({color})=> (

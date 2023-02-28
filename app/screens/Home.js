@@ -43,7 +43,7 @@ const Home = ({navigation}) => {
   } else {
   return (
     <View style={styles.container}>
-      <StatusBar hidden={false} />
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <MainHeader screen={"Página Principal"} name={'ios-menu-outline'} onPress={() => navigation.openDrawer()}/>
       <ScrollView style={{}}>
       <>
@@ -66,9 +66,6 @@ const Home = ({navigation}) => {
         </View>
           </SafeAreaView>
           <Contact onpress={() => navigation.navigate('comments')}/>
-          <Text 
-            onPress={() => alert("Hola")}
-            style={styles.options}>Tus opiniones son muy importantes para nosotros</Text>
           </>
           </ScrollView>
         </View>

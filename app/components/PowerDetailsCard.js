@@ -28,14 +28,6 @@ const PowerDetailsCard = ({power}) => {
         </Animatable.View>
     </BottomSheet>
   )
-  //return (
-  //  <View style={styles.card}>
-  //    <Animatable.View style={styles.header} animation='fadeInUp' delay={300} duration={400} easing='ease-in-out'>
-  //      <Text style={styles.title}>{power.title}</Text>
-  //      <Text style={styles.body}>{power.body}</Text>
-  //    </Animatable.View>
-  //  </View>
-  //)
 }
 }
 

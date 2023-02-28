@@ -22,6 +22,7 @@ import axios from 'axios';
 import { FAB, Divider } from "@rneui/themed";
 import {Poppins_400Regular,Poppins_400Regular_Italic,Poppins_500Medium,Poppins_800ExtraBold,Poppins_600SemiBold,Poppins_700Bold} from '@expo-google-fonts/poppins';
 import { useFonts } from '@expo-google-fonts/dev';
+import { urlApiAlphaO } from '../const/CONST';
 
 export const DrawerOptions = (props) => {
     const {user, logged, logout, isLogged, userInfo,avatar} = useContext(AuthContext)
@@ -38,9 +39,7 @@ export const DrawerOptions = (props) => {
       setIsLoading(true)
         try {
             await axios.post(
-                //'http://10.0.2.2:8000/api/v1/logout',
-                //'http://10.0.2.2:8000/api/alpha/logout',
-                'https://alphaofinal.herokuapp.com/api/alpha/logout',
+                `${urlApiAlphaO}/api/alpha/logout`,
                 {}, { headers: { 'accept': 'application/json', 'authorization': await token } }
             );
             logout();
@@ -50,6 +49,8 @@ export const DrawerOptions = (props) => {
             console.log(isLogged)
         } catch (error) {
             console.log(error);
+            Alert.alert("Ha ocurrido un error","No podemos cerrar tu sesión en este momento, por favor, intentalo más tarde.")
+            setIsLoading(false);
         }
     };
     
@@ -69,14 +70,14 @@ export const DrawerOptions = (props) => {
   } else {
     return (
         <View style={styles.container}>
-          <Loader visible={isLoading} text="Cerrando sesion" />
+          <Loader visible={isLoading} text="Cerrando sesión" />
         <DrawerContentScrollView {...props} 
             //contentContainerStyle={styles.background}
         >
             <ImageBackground 
                 source={{uri: avatar.url}} 
-                imageStyle= {{opacity:0.5}}
-                style={{padding: 10, height:160,bottom:4}}
+                imageStyle= {{opacity:0.3}}
+                style={{padding: 10, height:160,bottom:4, justifyContent:'center',alignItems:'center'}}
             >
                 <TouchableOpacity
                     onPress={()=>{
@@ -108,7 +109,7 @@ export const DrawerOptions = (props) => {
                     type='ionicon'
                     size={22}
                 />
-                <Text style={styles.text}>Cerrar sesion</Text>
+                <Text style={styles.text}>Cerrar sesión</Text>
             </View>
             </TouchableOpacity>
         </View>
@@ -161,12 +162,12 @@ const styles = StyleSheet.create({
         fontSize:15,
         marginLeft:5,
         //fontWeight:'bold',
-        fontFamily: 'Poppins_700Bold'
+        fontFamily: 'Poppins_800ExtraBold'
       },
       userEmail:{
         fontSize:13,
         marginLeft:5,
-        fontFamily: 'Poppins_500Medium'
+        fontFamily: 'Poppins_600SemiBold'
         //fontWeight:'bold'
       },
 })

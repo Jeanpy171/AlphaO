@@ -9,6 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../components/Loader';
 import { validatePassword, validatePasswords } from '../utils/helpers';
 import { Alert } from 'react-native';
+import { StatusBar } from 'react-native';
+import { urlApiAlphaO } from '../const/CONST';
 
 const UpdatePassword = ({ navigation }) => {
   const [userData, setUserData] = useState({ password: '', newPassword: '' });
@@ -56,7 +58,7 @@ const UpdatePassword = ({ navigation }) => {
     try {
       console.log("Actualizando contraseña . . . ")
       const response = await axios.post(
-        'https://alphaofinal.herokuapp.com/api/alpha/update-password',
+        `${urlApiAlphaO}/api/alpha/update-password`,
         { password, password_confirmation },
         { headers: { 'accept': 'application/json', 'authorization': await token } }
       )
@@ -74,13 +76,14 @@ const UpdatePassword = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <Loader visible={isLoading} text="Actualizando contraseña" />
       <MainHeader screen={"Actualizar Contraseña"} name={'ios-arrow-back'} onPress={() => navigation.goBack()} />
       <View style={{ width: "90%" }}>
         <View style={{ paddingVertical: 20 }}>
 
           <Text style={styles.title}>
-            No estas seguro con tu contraseña actual?
+            No estás seguro con tu contraseña actual?
           </Text>
           <Text style={styles.subtitle}>
             Puedes modificarla en este apartado.
@@ -111,7 +114,7 @@ const UpdatePassword = ({ navigation }) => {
             }
             iconName="lock-outline"
             label="Confirma tu contraseña"
-            placeholder="Ingresa nuevamente tu nueva contraseña"
+            placeholder="Ingresa nuevamente la contraseña"
             error={errorNewPassword}
             maxLength={15}
             password

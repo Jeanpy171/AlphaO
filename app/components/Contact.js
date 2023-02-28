@@ -10,7 +10,7 @@ import { useState } from "react";
 import { FlatList } from "react-native";
 import { useEffect } from "react";
 import { Icon } from "@rneui/base";
-import { colors, sizes, spacing } from "../const/CONST";
+import { colors, sizes, spacing, urlApiAlphaO } from "../const/CONST";
 import {Poppins_400Regular,Poppins_700Bold,Poppins_800ExtraBold,Poppins_600SemiBold,Poppins_500Medium} from '@expo-google-fonts/poppins';
 import { useFonts } from '@expo-google-fonts/dev';
 
@@ -28,7 +28,7 @@ const Contact = ({onpress}) => {
   
     try{
       const response = await axios.get(
-        'https://alphaofinal.herokuapp.com/api/alpha/contactos',
+        `${urlApiAlphaO}/api/alpha/contactos`,
         { headers: { 'accept': 'application/json', 'authorization': token } }
     );
 
@@ -176,7 +176,7 @@ if (!fontsLoaded) {
         </View>
         <TouchableOpacity onPress={onpress}>
         <Text style={styles.options}>Te ha gustado la experiencia? <Text 
-        style={styles.indications}>Dejanos tu valoración aquí.</Text></Text>
+        style={styles.indications}>Déjanos tu valoración aquí.</Text></Text>
         </TouchableOpacity>
       </View>
   )

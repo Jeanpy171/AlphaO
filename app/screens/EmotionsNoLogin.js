@@ -22,7 +22,7 @@ export const EmotionsNoLogin = ({navigation}) => {
  
   return (
     <View style={styles.container}>
-      <StatusBar hidden={false} />
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <FlatList
         data={genders}
         //horizontal
@@ -42,7 +42,7 @@ export const EmotionsNoLogin = ({navigation}) => {
                             <Text style={styles.resume}>{item.resume}</Text>
                             <TouchableOpacity
                             style={{flexDirection:'row',alignItems:'center',backgroundColor:colors.orange,width:"55%",height:"25%",borderRadius:20,paddingHorizontal:10}}
-                                onPress={()=>{Alert.alert("No estas autorizado para revisar este material","Debes iniciar sesion para acceder a este contenido")}}
+                                onPress={()=>{Alert.alert("No estas autorizado para revisar este material","Debes iniciar sesión para acceder a este contenido")}}
                             >
                                 <View style={{borderRadius:15,backgroundColor:colors.white,width:"15%",height:"80%",alignItems:'center',justifyContent:'center'}}>
                                     <Icon name={'play'} type='ionicon' size={15} color="black" />

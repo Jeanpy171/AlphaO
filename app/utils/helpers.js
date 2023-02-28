@@ -57,7 +57,7 @@ const validateEmailDomains = (ValueEmail,fn) => {
     Response.Result = false;
     Response.resultValidation = true;
     Response.message = "Correo electrónico invalido";
-    fn("No se puede digitar mas de un dominio en un correo electrónico");
+    fn("No se puede digitar más de un dominio en un correo electrónico");
     return Response;
   }
 };
@@ -71,8 +71,8 @@ export const validateName = (name, fn) => {
     fn("El campo nombre no puede estar vacio")
 
   } else {
-    if (name.length < 5) {
-      fn("El campo nombre no puede tener 3 o menos digitos")
+    if (name.length < 4) {
+      fn("El campo nombre no puede tener 3 o menos dígitos")
     } else {
       let regex = new RegExp(/^[A-Z]+[a-z]+$/);
       if (!regex.test(name)) {
@@ -95,9 +95,9 @@ export const validateUsername = (username, fn) => {
 
   } else {
     if (username.length < 5) {
-      fn("El campo nombre de usuario no puede tener 3 o menos digitos")
+      fn("El campo nombre de usuario no puede tener 3 o menos dígitos")
     } else {
-      let regex = new RegExp(/^[A-Z]+[a-z0-9_-]{3,16}$/);
+      let regex = new RegExp(/^[A-Z]+[a-zA-Z0-9_-]{3,16}$/);
       if (!regex.test(username)) {
         console.log("Nombre de usuario no valido");
         fn("El campo nombre de usuario no puede contener caracteres especiales");
@@ -116,7 +116,7 @@ export const validateLastname = (lastName, fn) => {
     fn("El campo apellido no puede estar vacio")
   } else {
     if (lastName.length < 5) {
-      fn("El campo apellido no puede tener 3 o menos digitos")
+      fn("El campo apellido no puede tener 3 o menos dígitos")
     } else {
       let regex = new RegExp(/^[A-Z]+[a-z]+$/);
       if (!regex.test(lastName)) {
@@ -204,7 +204,7 @@ export const validatePassword = (password, fn) => {
       fn("");
     } else {
       console.log("CONTRASEÑA INCORRECTA")
-      fn("La contraseña debe contener mínimo 8 caracteres con al menos una letra mayuscula, un numero y un caracter especial");
+      fn("La contraseña debe contener mínimo 8 caracteres con al menos una letra mayúscula, un número y un caracter especial");
     }
   }
 
@@ -226,7 +226,7 @@ export const validatePasswords = (password, password_confirmation, fn) => {
         fn("");
       } else {
         console.log("CONTRASEÑA INCORRECTA")
-        fn("La contraseña debe contener al menos una letra mayuscula, un numero y un caracter especial");
+        fn("La contraseña debe contener al menos una letra mayúscula, un número y un caracter especial");
       }
     }
   }

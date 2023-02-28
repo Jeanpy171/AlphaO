@@ -10,7 +10,7 @@ import { Poppins_400Regular, Poppins_400Regular_Italic, Poppins_500Medium } from
 import { useFonts } from '@expo-google-fonts/dev';
 import CustomModal from '../components/Modal';
 import { StatusBar } from 'react-native';
-import { sizes } from '../const/CONST';
+import { sizes, urlApiAlphaO } from '../const/CONST';
 
 export default function Register_part2({ navigation, route }) {
   const [userData, setUserData] = useState({ username: '', home_phone: '', personal_phone: '', address: '' });
@@ -38,12 +38,12 @@ export default function Register_part2({ navigation, route }) {
     }
     if (errorPersonal_phone != '') {
       console.log('DATOS DE TELEFONO')
-      setErrorPersonal_phone('el campo numero telefonico no puede estar vacio')
+      setErrorPersonal_phone('El campo número telefónico no puede estar vacio')
       isValid = false;
     }
     if (errorHome_phone != '') {
       console.log('DATOS DE CONVENCIONAL')
-      setErrorHome_phone('El campo telefono convencional no puede estar vacio')
+      setErrorHome_phone('El campo teléfono convencional no puede estar vacio')
       isValid = false;
     }
     if (errorAddress != '') {
@@ -75,7 +75,7 @@ export default function Register_part2({ navigation, route }) {
     try {
       console.log("Realizando peticion")
       const response = await axios.post(
-        'https://alphaofinal.herokuapp.com/api/alpha/register',
+        `${urlApiAlphaO}/api/alpha/register`,
         { first_name, last_name, username, email, personal_phone, home_phone, address, password },
         { headers: { 'accept': 'application/json' } }
       )
@@ -96,7 +96,7 @@ export default function Register_part2({ navigation, route }) {
     try {
       console.log("Realizando peticion")
       const response = await axios.post(
-        'https://alphaofinal.herokuapp.com/api/alpha/login',
+        `${urlApiAlphaO}/api/alpha/login`,
         { email, password },
         { headers: { 'accept': 'application/json' } }
       )
@@ -123,13 +123,13 @@ export default function Register_part2({ navigation, route }) {
     return (
       <ScrollView style={styles.mainContainer}>
         <Loader visible={isLoading} text="Verificando datos" />
-        <StatusBar hidden={false} />
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <CustomModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} ButtonName={"Acceder"} onPress={() => {
           navigation.goBack()
         }} title={"Encontramos un problema al crear tu cuenta"} text={inputError} />
         <ImageBackground
           source={require("../../assets/garza-fondo.jpg")}
-          imageStyle={{ opacity: 0.3 }}
+          imageStyle={{ opacity: 0.2 }}
           style={styles.background}
         >
           <View style={styles.contentContainer}>
@@ -137,7 +137,7 @@ export default function Register_part2({ navigation, route }) {
               Ya falta muy poco
             </Text>
             <Text style={styles.subtitle}>
-              Completa estos ultimos campos
+              Completa estos últimos campos
             </Text>
             <Input
               onChangeText={txt => {
@@ -159,8 +159,8 @@ export default function Register_part2({ navigation, route }) {
                 setUserData({ ...userData, personal_phone: txt })
               }}
               iconName="cellphone"
-              label="Numero telefonico"
-              placeholder="Ingresa tu numero telefonico"
+              label="Número telefónico"
+              placeholder="Ingresa tu numero telefónico"
               maxLength={10}
               error={errorPersonal_phone}
               keyboard='numeric'
@@ -173,8 +173,8 @@ export default function Register_part2({ navigation, route }) {
                 setUserData({ ...userData, home_phone: txt })
               }}
               iconName="phone"
-              label="Numero convencional"
-              placeholder="Ingresa tu numero convencional"
+              label="Número convencional"
+              placeholder="Ingresa tu número convencional"
               maxLength={9}
               error={errorHome_phone}
               keyboard='numeric'

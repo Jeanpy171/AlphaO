@@ -15,7 +15,7 @@ const Splash = ({ navigation }) => {
       source={require('../../assets/bird-loader.json')}
       autoPlay
       loop={false}
-      speed={2}
+      speed={1.5}
       onAnimationFinish={async () => {
         console.log("Animation finish")
         console.log(isLogged)

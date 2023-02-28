@@ -6,12 +6,14 @@ import { Icon } from '@rneui/base'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import PowerDetailsCard from '../components/PowerDetailsCard'
 import * as Animatable from 'react-native-animatable'
+import { StatusBar } from 'react-native'
 
 const PowersDetails = ({ navigation, route }) => {
   const { power } = route.params
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.container}>
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <View style={[StyleSheet.absoluteFillObject, styles.imageBox]}>
         <Animatable.View style={[styles.backButton, { marginTop: insets.top }]} animation='fadeIn' delay={300} duration={400} easing='ease-in-out'>
           <TouchableOpacity onPress={() => navigation.goBack()}>

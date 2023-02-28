@@ -1,33 +1,56 @@
-import { Alert, FlatList, RefreshControl, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View,} from 'react-native'
+import { Alert, Dimensions, FlatList, RefreshControl, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View,} from 'react-native'
 import React, { useCallback, useContext, useState } from 'react'
 import MainHeader from '../components/MainHeader';
 import { Image } from 'react-native';
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { Icon } from '@rneui/base';
+import { Icon, SearchBar } from '@rneui/base';
 import Lottie from 'lottie-react-native';
-import { colors, sizes } from '../const/CONST';
+import { colors, sizes, urlApiAlphaO } from '../const/CONST';
 import LoaderAnimation from '../components/LoaderAnimation';
 import { AuthContext } from '../context/AuthContext';
+import DropdownComponent from '../components/DropdownComponent';
 
 const Events = ({navigation}) => {
   const [refreshing, setRefreshing] = useState(false);
   const token = AsyncStorage.getItem('token');
   const [eventos,setEventos] = useState([]);
+  const [searchEvents,setSearchEvents] = useState([]);
   const [refresh,setRefresh] = useState(false);
   const [showAnimation,setShowAnimation] = useState(false);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('descripcion');
   const { notifications, setNotifications } = useContext(AuthContext)
+
   const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   }
+
+  const updateSearch = (search) => {
+    setSearch(search);
+        let newEvents = []
+        eventos.filter(event => {
+            if(event[filter].toLowerCase().includes(search.toLowerCase())){
+                newEvents.push(event)
+                console.log(event)
+            }else{
+                console.log('SIN COINCIDENCIAS')
+            }
+             
+            setSearchEvents(newEvents)
+                }
+            )
+        console.log("EVENTOS DE BARRA DE BUSQUEDA - - - - - - ",searchEvents)
+    
+  };
 
   const getEventsList = async () => {
     setShowAnimation(true)
     try {
         console.log("Recopilando eventos")
         const response = await axios.get(
-            'https://alphaofinal.herokuapp.com/api/alpha/reservas/reservalist',
+            `${urlApiAlphaO}/api/alpha/reservas/reservalist`,
             { headers: { 'accept': 'application/json', 'authorization': await token } }
         );
         console.log(response.data.data.eventos);
@@ -45,23 +68,29 @@ const Events = ({navigation}) => {
         setShowAnimation(true)
         try {
             console.log("Reservando cupo")
-            console.log(`https://alphaofinal.herokuapp.com/api/alpha/reservas/reserva-create/${item}`)
+            console.log(`${urlApiAlphaO}/api/alpha/reservas/reserva-create/${item}`)
             const response = await axios.post(
-                `https://alphaofinal.herokuapp.com/api/alpha/reservas/reserva-create/${item}`,
+                `${urlApiAlphaO}/api/alpha/reservas/reserva-create/${item}`,
                 { },
                 { headers: { 'accept': 'application/json' , 'authorization': await token } }
             );
             console.log(response.data);
-            Alert.alert("Tu reserva ha sido generada exitosamente",response.data.message);
-            AsyncStorage.removeItem('notifications')
-            setNotifications(notifications + 1)
-            AsyncStorage.setItem('notifications', (notifications + 1).toString());
+            Alert.alert("Tenemos una noticia para ti",response.data.message);
+            let res = response.data.message;
+            let comparador = "Reserva generada satisfactoriamente ";
+            if(res == comparador){
+                console.log("- - - - - - - - - - ENTRANDO A SENTENCIA IGUALES")
+                AsyncStorage.removeItem('notifications')
+                setNotifications(notifications + 1)
+                AsyncStorage.setItem('notifications', (notifications + 1).toString());
+            }
             setRefresh(!refresh)
             setShowAnimation(false)
+            console.log('SENSOR DE NOTIFICACIONES DICE: ', notifications)
         } catch (e) {
-            console.log(e.response)
+            console.log(e.response.data)
             setShowAnimation(false)
-            Alert.alert("SE ha producido un error",e.response.data.message);
+            Alert.alert("Se ha producido un error",e.response.data);
             }
     }
 
@@ -121,7 +150,7 @@ const Events = ({navigation}) => {
     return(
         <View style={{justifyContent:"center",alignItems:'center',width:'100%',height:'100%'}}>
             <FlatList
-                //style={{bottom:"4%"}}
+                showsVerticalScrollIndicator={false}
                 keyExtractor={(item, index) => index.toString()}
                 horizontal={false}
                 data={eventos}
@@ -129,10 +158,25 @@ const Events = ({navigation}) => {
             />
         </View>
     )
-}
+  }
+
+    const GetSearchEvents = () => {
+        return(
+            
+                <FlatList
+                    //style={{bottom:"4%"}}
+                    keyExtractor={(item, index) => index.toString()}
+                    horizontal={false}
+                    data={searchEvents}
+                    renderItem={RenderItemEvents}
+                />
+       
+        )
+    }
+
   return (
     <SafeAreaView style={styles.container}>
-        <StatusBar hidden={false} />
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <LoaderAnimation visible={showAnimation}/>
         <MainHeader screen={"Eventos presenciales"} name={'ios-menu-outline'} onPress={() => navigation.openDrawer()}/>
         <ScrollView 
@@ -145,7 +189,28 @@ const Events = ({navigation}) => {
                 />
             }
             >
-            <GetEvents/>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={styles.view}>
+                            <SearchBar
+                                placeholder="Buscar..."
+                                onChangeText={updateSearch}
+                                value={search}
+                                lightTheme={true}
+                                containerStyle={{backgroundColor:'white'}}
+                            />
+                        </View>
+                        <View style={styles.viewDrop}>
+                            <DropdownComponent setFilter={setFilter}/>
+                        </View>
+                    </View>
+                    
+                    {
+                        (search=='')
+                        ?<GetEvents/>
+                        :<GetSearchEvents/>
+
+                    }
+                
                 
         </ScrollView>
     </SafeAreaView>
@@ -162,11 +227,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    containerScroll: {
-        //flex: 1,
-        //backgroundColor: '#fff',
-        //alignItems: 'center',
-        //justifyContent: 'center',
+    subContainer: {
+        flex:1,
+        top:'1%',
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       title:{
         //marginVertical:15,
@@ -192,5 +258,13 @@ const styles = StyleSheet.create({
         textAlign:'justify',
         fontFamily: 'Poppins_400Regular'
     },
+    view: {
+        //marginVertical: 10,
+        //top:'2.5%',
+        width:sizes.width -150
+      },
+      viewDrop:{
+        width:sizes.width -240
+      }
   });
   

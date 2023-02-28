@@ -14,8 +14,9 @@ import { useEffect } from 'react';
 import { ListItem } from 'react-native-elements'
 import { FlatList } from 'react-native';
 import { Rating } from 'react-native-ratings';
-import { sizes } from '../const/CONST';
+import { sizes, urlApiAlphaO } from '../const/CONST';
 import LoaderAnimation from '../components/LoaderAnimation';
+import { StatusBar } from 'react-native';
 
 export const CommentsList = ({navigation}) => {
   const [userRating,setUserRating] = useState([1,2,3,4,5])
@@ -42,7 +43,7 @@ export const CommentsList = ({navigation}) => {
     try {
         console.log("Realizando peticion")
         const response = await axios.get(
-            'https://alphaofinal.herokuapp.com/api/alpha/commentpublic',
+          `${urlApiAlphaO}/api/alpha/commentpublic`,
         )
         console.log(response.data.data.comments);
         (response.data.data.comments)
@@ -118,28 +119,30 @@ const CustomRating = ({defaultRating}) => {
   } else {
   return (
     <KeyboardAvoidingView style={styles.mainContainer}>
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <LoaderAnimation visible={showAnimation}/>
       <ImageBackground 
         source={require("../../assets/garza-fondo.jpg")}
-        imageStyle= {{opacity:0.3}}
+        imageStyle= {{opacity:0.2}}
         style={styles.background}
       >
       <View style={styles.contentContainer}>
-        <Text style={styles.titles}>
-            Opiniones recurrentes
-        </Text>
-        <Text style={styles.subtitle}>Esto es lo que los usuarios piensan de nuestra aplicación</Text>
-          {
-            (commentList)
-            ? (<FlatList
-              keyExtractor={(item, index) => index.toString()}
-              data={commentList}
-              renderItem={RenderItem}
-              />)
-            : (<Text style={styles.subtitle}>{info}</Text>)
-            
-          }
-
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={styles.titles}>
+              Opiniones recurrentes
+          </Text>
+          <Text style={styles.subtitle}>Esto es lo que los usuarios piensan de nuestra aplicación</Text>
+            {
+              (commentList)
+              ? (<FlatList
+                keyExtractor={(item, index) => index.toString()}
+                data={commentList}
+                renderItem={RenderItem}
+                />)
+              : (<Text style={styles.subtitle}>{info}</Text>)
+              
+            }
+        </ScrollView>
         </View>
         </ImageBackground>
     </KeyboardAvoidingView>

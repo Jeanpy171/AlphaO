@@ -7,6 +7,7 @@ import { useFonts } from '@expo-google-fonts/dev';
 import { FAB, Divider } from "@rneui/themed";
 import MainHeader from '../components/MainHeader';
 import { colors, sizes } from '../const/CONST';
+import { StatusBar } from 'react-native';
 
 
 export const Profile = ({ navigation }) => {
@@ -32,6 +33,7 @@ export const Profile = ({ navigation }) => {
   } else {
     return (
       <View style={styles.container}>
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <MainHeader screen={"Mi Perfil"} name={'ios-menu-outline'} onPress={() => navigation.openDrawer()} />
         <View style={styles.headerContainer}>
           <BackgroundImage
@@ -54,7 +56,7 @@ export const Profile = ({ navigation }) => {
             style={styles.edit}
             visible={true}
             size='small'
-            icon={<Icon name='expeditedssl' type='font-awesome' color={'white'} size={20} />}
+            icon={<Icon name='shield-lock' type='material-community' color={'white'} size={22} />}
             color={colors.orange}
             onPress={() => {
               console.log(userInfo)
@@ -67,7 +69,7 @@ export const Profile = ({ navigation }) => {
             style={styles.edit}
             visible={true}
             size='small'
-            icon={<Icon name='edit' type='font-awesome' color={'white'} size={20} />}
+            icon={<Icon name='account-edit' type='material-community' color={'white'} size={22} />}
             color={colors.orange}
             onPress={() => {
               console.log(userInfo)

@@ -9,7 +9,7 @@ import { AuthContext, } from '../../app/context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import { Poppins_400Regular, Poppins_700Bold, Poppins_800ExtraBold, Poppins_600SemiBold, Poppins_500Medium } from '@expo-google-fonts/poppins';
 import { useFonts } from '@expo-google-fonts/dev';
-import { colors, sizes } from '../const/CONST';
+import { colors, sizes, urlApiAlphaO } from '../const/CONST';
 import { Alert } from 'react-native';
 
 export default function Login() {
@@ -58,7 +58,7 @@ export default function Login() {
     try {
       console.log("Realizando peticion")
       const response = await axios.post(
-        'https://alphaofinal.herokuapp.com/api/alpha/login',
+        `${urlApiAlphaO}/api/alpha/login`,
         { email, password },
         { headers: { 'accept': 'application/json' } }
       )
@@ -83,11 +83,11 @@ export default function Login() {
   } else {
     return (
       <KeyboardAvoidingView style={styles.mainContainer}>
-        <StatusBar hidden={false} />
-        <Loader visible={isLoading} text="Iniciando sesion" />
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
+        <Loader visible={isLoading} text="Iniciando sesión" />
         <ImageBackground
           source={require("../../assets/garza-fondo.jpg")}
-          imageStyle={{ opacity: 0.3 }}
+          imageStyle={{ opacity: 0.2 }}
           style={styles.background}
         >
           <View style={styles.contentContainer}>

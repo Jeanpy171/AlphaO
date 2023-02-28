@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { FlatList } from 'react-native'
 import { TouchableOpacity } from 'react-native'
 import { Image } from 'react-native'
-import {colors,shadow, sizes, spacing} from '../const/CONST'
+import {colors,shadow, sizes, spacing, urlApiAlphaO} from '../const/CONST'
 import { genders } from './data/data'
 import {Poppins_400Regular,Poppins_700Bold,Poppins_800ExtraBold,Poppins_600SemiBold,Poppins_500Medium} from '@expo-google-fonts/poppins';
 import { useFonts } from '@expo-google-fonts/dev';
@@ -34,7 +34,7 @@ const getMusicList = async () => {
   try {
       console.log("Recopilando canciones")
       const response = await axios.get(
-          'https://alphaofinal.herokuapp.com/api/alpha/musicOne/lista',
+        `${urlApiAlphaO}/api/alpha/musicOne/lista`,
           { headers: { 'accept': 'application/json', 'authorization': await token } }
       );
       //console.log(response.data.data.music_ones);

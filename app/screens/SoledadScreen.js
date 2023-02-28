@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderAnimation from '../components/LoaderAnimation';
 import { StatusBar } from 'react-native';
 import { sizes } from '../const/CONST';
+import VideoComponent from '../components/VideoComponent';
 //const INSETS = useSafeAreaInsets();
 const SoledadScreen = ({ navigation, route }) => {
   const { gender } = route.params
@@ -61,16 +62,12 @@ const SoledadScreen = ({ navigation, route }) => {
     Poppins_800ExtraBold
   });
 
-  function setOrientation() {
+  const setOrientation = () => {
     if (Dimensions.get('window').height > Dimensions.get('window').width) {
-
-      //Device is in portrait mode, rotate to landscape mode.
       ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
 
     }
     else {
-
-      //Device is in landscape mode, rotate to portrait mode.
       ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
 
     }
@@ -84,7 +81,7 @@ const SoledadScreen = ({ navigation, route }) => {
   } else {
     return (
       <View style={styles.container}>
-        <StatusBar hidden={false} />
+        <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
         <LoaderAnimation visible={showAnimation} />
         <MainHeader screen={gender.title} name={'ios-arrow-back'} onPress={() => {
           setcanciones([])
@@ -92,20 +89,7 @@ const SoledadScreen = ({ navigation, route }) => {
         }
         } />
         <Text style={styles.title}>Video introductorio</Text>
-        <View style={styles.videoView}>
-          <Video
-            source={{ uri: data.video }}
-            rate={1.0}
-            volume={1.0}
-            isMuted={false}
-            resizeMode="cover"
-            shouldPlay={false}
-            isLooping={false}
-            useNativeControls
-            onFullscreenUpdate={setOrientation}
-            style={{ width: Dimensions.get("window").width, height: Dimensions.get("window").height / 3, }}
-          />
-        </View>
+        <VideoComponent videoUrl={data.video} setOrientation={setOrientation} />
         <Text style={styles.subtitle}>{data.descripcion}</Text>
         <TrackListScreen musiclibrary={canciones} />
 

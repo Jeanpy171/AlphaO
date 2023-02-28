@@ -24,6 +24,7 @@ const AccountCreated = ({navigation,route}) => {
   } else {
   return (
     <View style={styles.container}>
+      <StatusBar animated={true} backgroundColor="transparent" barStyle={'dark-content'}/>
       <Lottie 
       source={require('../../assets/account-created.json')} 
       autoPlay 
@@ -33,7 +34,7 @@ const AccountCreated = ({navigation,route}) => {
         setModalVisible(true)
         console.log(userCredentials)
         //onLogin(userCredentials.email,userCredentials.password)
-        console.log("ANIMACI[ON DE CUENTA CREADA TERMINADA")
+        console.log("ANIMACIÓN DE CUENTA CREADA TERMINADA")
       }}
     />
       <View style={styles.centeredView}>
@@ -57,7 +58,7 @@ const AccountCreated = ({navigation,route}) => {
                 onAnimationFinish = {async() => {
                   console.log(userCredentials)
                   //onLogin(userCredentials.email,userCredentials.password)
-                  console.log("ANIMACI[ON DE CUENTA CREADA TERMINADA")
+                  console.log("ANIMACIÓN DE CUENTA CREADA TERMINADA")
                   setModalVisible(true)
                 }}
             />
