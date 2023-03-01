@@ -18,9 +18,26 @@
 
 
 ## Ejecución del aplicativo (Local)
-###### Manual de instalación del framework React Native
+###### 1.- Manual de instalación del entorno de desarrollo React Native
 ```
 https://reactnative.dev/docs/environment-setup
+```
+###### 2.- Manual de instalación del entorno de desarrollo Expo
+```
+https://docs.expo.dev/get-started/installation/
+```
+###### 3.- Clonar el proyecto
+```
+https://docs.expo.dev/get-started/installation/
+```
+###### 4.- Ejecutar 'yarn install' en el cmd del directorio raiz
+```
+yarn install
+```
+###### 5.- Habilitar el modo desarrollador en el teléfono a usar el aplicativo
+###### 6.- Ejecutar el siguiente comando para iniciar la aplicación en el teléfono.
+```
+expo run:android
 ```
 This is the complete audio player app built with Expo React Native. This is the project created for YouTube tutorial by [non-degree-programmer](https://www.youtube.com/channel/UCiTUxayvzwCn9qStZYK07zg).
 
