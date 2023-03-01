@@ -15,7 +15,13 @@
 > Link de Play Store: En espera de aprobación . . .
 > 
 > Desarga del aplicativo en formato APK
-> 
+
+
+## Ejecución del aplicativo (Local)
+###### Manual de instalación del framework React Native
+```
+https://reactnative.dev/docs/environment-setup
+```
 This is the complete audio player app built with Expo React Native. This is the project created for YouTube tutorial by [non-degree-programmer](https://www.youtube.com/channel/UCiTUxayvzwCn9qStZYK07zg).
 
 This app is made for reading local audio files from your device and play them inside it.
