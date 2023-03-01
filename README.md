@@ -14,7 +14,7 @@
 ## Acceso al aplicativo
 > Link de Play Store: En espera de aprobación . . .
 > 
-> Desarga del aplicativo en formato APK
+> [Desarga del aplicativo en formato APK](https://epnecuador-my.sharepoint.com/:u:/g/personal/jean_fuentes_epn_edu_ec/EbAW3NqvirlMmJ6AzNkx4MsBFeyrNvJf6d_ecrw5m65Ubw?e=h6Gbyu)
 
 
 ## Ejecución del aplicativo (Local)
