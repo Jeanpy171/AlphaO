@@ -28,7 +28,7 @@ https://docs.expo.dev/get-started/installation/
 ```
 ###### 3.- Clonar el proyecto
 ```
-https://docs.expo.dev/get-started/installation/
+https://github.com/Jeanpy171/AlphaO.git
 ```
 ###### 4.- Ejecutar 'yarn install' en el cmd del directorio raiz
 ```
@@ -41,10 +41,5 @@ expo run:android
 ```
 This is the complete audio player app built with Expo React Native. This is the project created for YouTube tutorial by [non-degree-programmer](https://www.youtube.com/channel/UCiTUxayvzwCn9qStZYK07zg).
 
-This app is made for reading local audio files from your device and play them inside it.
+![Frame 1 (1)](https://user-images.githubusercontent.com/74626067/222255951-243ae0f1-e2f9-4f99-a9a3-ee4ae4bb11e1.png)
 
-## Some of look and feel this audio player app.
-
-![Audio Player](./images/player-image.jpg)
-
-clone or download this project and do npm install, you can use expo app on android or ios to run this project.
