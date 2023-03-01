@@ -4,7 +4,7 @@
 > 
 > Proyecto: Desarrollo de un sistema para la escuela de Biodanza en Quito-Puembo
 > 
-> Componente: Aplicaión Móvil
+> Componente: Aplicación Móvil
 
 ## Documentación
 > [Informe Técnico](https://epnecuador-my.sharepoint.com/:b:/g/personal/jean_fuentes_epn_edu_ec/EaQk_wkr55xCpdxSEsnBeaUBf4wNh59v0XCH54IWWfzeEw?e=Lh0Cr1)
