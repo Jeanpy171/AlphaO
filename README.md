@@ -6,7 +6,16 @@
 > 
 > Componente: Aplicaión Móvil
 
+## Documentación
+> Informe Técnico
+> 
+> Manual de Usuario
 
+## Acceso al aplicativo
+> Link de Play Store: En espera de aprobación . . .
+> 
+> Desarga del aplicativo en formato APK
+> 
 This is the complete audio player app built with Expo React Native. This is the project created for YouTube tutorial by [non-degree-programmer](https://www.youtube.com/channel/UCiTUxayvzwCn9qStZYK07zg).
 
 This app is made for reading local audio files from your device and play them inside it.
