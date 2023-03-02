@@ -7,9 +7,7 @@
 > Componente: Aplicación Móvil
 
 ## Documentación
-> [Informe Técnico](https://epnecuador-my.sharepoint.com/:b:/g/personal/jean_fuentes_epn_edu_ec/EaQk_wkr55xCpdxSEsnBeaUBf4wNh59v0XCH54IWWfzeEw?e=Lh0Cr1)
-> 
-> Manual de Usuario
+> Manual de Usuario: [Link de Youtube](https://youtu.be/fbLjFoyOyWQ)
 
 ## Acceso al aplicativo
 > Link de Play Store: En espera de aprobación . . .
