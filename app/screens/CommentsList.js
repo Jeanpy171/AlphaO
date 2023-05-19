@@ -1,19 +1,10 @@
 import { StyleSheet, Text, View, Image,ScrollView, ImageBackground,Dimensions ,SafeAreaView, Keyboard, Alert, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import Input from '../components/Input'
-import Button from '../components/Button'
-import Loader from '../components/Loader';
-import { validateEmail } from '../utils/helpers';
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
 import {Poppins_400Regular,Poppins_400Regular_Italic,Poppins_500Medium} from '@expo-google-fonts/poppins';
 import { useFonts } from '@expo-google-fonts/dev';
 import { useEffect } from 'react';
-import { ListItem } from 'react-native-elements'
 import { FlatList } from 'react-native';
-import { Rating } from 'react-native-ratings';
 import { sizes, urlApiAlphaO } from '../const/CONST';
 import LoaderAnimation from '../components/LoaderAnimation';
 import { StatusBar } from 'react-native';
